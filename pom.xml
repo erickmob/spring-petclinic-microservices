@@ -19,11 +19,13 @@
     </properties>
 
     <modules>
+        <module>admin-server</module>
+        <module>config-server</module>
+        <module>customers-service</module>
         <module>eureka-server</module>
         <module>vets-service</module>
         <module>visits-service</module>
-        <module>customers-service</module>
-        <module>config-server</module>
+        <module>zuul-server</module>
     </modules>
 
     <dependencies>
