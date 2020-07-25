@@ -1,0 +1,15 @@
+package com.erickmob.petclinic.visitsservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@EnableEurekaClient
+@SpringBootApplication
+public class VisitsServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(VisitsServiceApplication.class, args);
+    }
+
+}
