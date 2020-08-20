@@ -11,9 +11,9 @@ services:
     ports:
       - 8888:8888
     healthcheck:
-      test: ["CMD", "curl", "--fail", "--silent", "localhost:8888/actuator/health 2>&1 | grep UP || exit 1"]
-      interval: 10s
-      timeout: 5s
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 200s
+      timeout: 200s
       retries: 5
 
   eureka-server:
@@ -29,9 +29,9 @@ services:
     ports:
       - 8761:8761
     healthcheck:
-      test: ["CMD", "curl", "--fail", "--silent", "localhost:8761/actuator/health 2>&1 | grep UP || exit 1"]
-      interval: 10s
-      timeout: 5s
+      test: ["CMD", "curl", "-f","http://localhost:8761/actuator/health"]
+      interval: 1m30s
+      timeout: 200s
       retries: 5
 
   customers-service:

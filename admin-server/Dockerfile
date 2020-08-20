@@ -8,6 +8,7 @@ WORKDIR admin-server/
 RUN mvn clean package
 
 FROM adoptopenjdk/openjdk11:alpine-jre
+RUN apk --no-cache add curl
 
 RUN addgroup -S spring && adduser -S spring -G spring
 
