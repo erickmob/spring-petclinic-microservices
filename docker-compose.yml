@@ -11,7 +11,7 @@ services:
     ports:
       - 8888:8888
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://config-server:8888/actuator/health"]
       interval: 200s
       timeout: 200s
       retries: 5
@@ -29,8 +29,8 @@ services:
     ports:
       - 8761:8761
     healthcheck:
-      test: ["CMD", "curl", "-f","http://localhost:8761/actuator/health"]
-      interval: 1m30s
+      test: ["CMD", "curl", "-f","http://eureka-server:8761/actuator/health"]
+      interval: 200s
       timeout: 200s
       retries: 5
 
@@ -42,8 +42,8 @@ services:
     container_name: customers-service
     mem_limit: 512M
     depends_on:
-      config-server:
-        condition: service_healthy
+#      config-server:
+#        condition: service_healthy
       eureka-server:
         condition: service_healthy
     ports:
@@ -52,13 +52,13 @@ services:
   visits-service:
     build:
       context: .
-      dockerfile: ./customers-service/Dockerfile
+      dockerfile: ./visits-service/Dockerfile
     image: visits-service
     container_name: visits-service
     mem_limit: 512M
     depends_on:
-      config-server:
-        condition: service_healthy
+#      config-server:
+#        condition: service_healthy
       eureka-server:
         condition: service_healthy
     ports:
@@ -72,8 +72,8 @@ services:
     container_name: vets-service
     mem_limit: 512M
     depends_on:
-      config-server:
-        condition: service_healthy
+#      config-server:
+#        condition: service_healthy
       eureka-server:
         condition: service_healthy
     ports:
@@ -84,11 +84,11 @@ services:
       context: .
       dockerfile: ./zuul-server/Dockerfile
     image: zuul-server
-    container_name: api-gateway
+    container_name: zuul-server
     mem_limit: 512M
     depends_on:
-      config-server:
-        condition: service_healthy
+#      config-server:
+#        condition: service_healthy
       eureka-server:
         condition: service_healthy
     ports:
@@ -102,8 +102,8 @@ services:
     container_name: admin-server
     mem_limit: 512M
     depends_on:
-      config-server:
-        condition: service_healthy
+#      config-server:
+#        condition: service_healthy
       eureka-server:
         condition: service_healthy
     ports:
